@@ -1,0 +1,560 @@
+/*Main page*/
+
+body {
+    background-color: #2c2c2c !important;
+}
+
+/* Split the screen in half */
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+    left: 0;
+    background-color: #111;
+}
+
+/* Control the right side */
+.right {
+    right: 0;
+    background-color: white;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.features {
+    height: 450px;
+    overflow: auto;
+    margin-top: 245px;
+}
+
+.features thead th {
+    position: sticky;
+    background-color: #009879;
+    top: 0;
+    z-index: 1;
+}
+
+.col_widg {
+    width: 600px; /* Ширина ячейки */
+}
+
+
+/*Table*/
+
+/*Custom scrollbar*/
+
+/* width */
+.features::-webkit-scrollbar {
+    width: 15px;
+    height: 20px;
+}
+
+/* Track */
+.features::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+.features::-webkit-scrollbar-thumb {
+    background: #009879;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.features::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+
+.create_table form {
+    margin-left: auto;
+    margin-right: 615px;
+    width: 400px;
+}
+
+.create_table input[type=text], input[type=text], input[type=text] {
+    width: 100%;
+    padding: 12px 17px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 3px solid #009879;
+    border-radius: 4px;
+}
+
+.create_table .btn-success {
+    background-color: #009879;
+    margin-left: 120px;
+}
+
+.create_table #but_event {
+    margin-left: 100px;
+}
+
+.create_table select {
+    width: 100%;
+    padding: 1px 17px;
+    border: 3px solid #009879;
+    border-radius: 4px;
+    color: black;
+}
+
+.create_table label {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/*Input from object table*/
+
+.create_table .btn-success {
+    background-color: #009879;
+}
+
+
+table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 0.9em;
+    min-width: 700px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+table th,
+table td {
+    padding: 25px 25px;
+    text-align: center;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+
+/*!*Input from object table*!*/
+
+/*.create_table .btn-success {*/
+/*    background-color: #009879;*/
+/*}*/
+
+/*!*Table*!*/
+
+/*.center {*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*}*/
+
+/*table {*/
+/*    border-collapse: collapse;*/
+/*    margin: 5px 0;*/
+/*    font-size: 0.9em;*/
+/*    min-width: 500px;*/
+/*    border-radius: 5px 5px 0 0;*/
+/*    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
+/*}*/
+
+/*thead tr {*/
+/*    background-color: #009879;*/
+/*    color: #ffffff;*/
+/*    text-align: left;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*table th,*/
+/*table td {*/
+/*    padding: 25px 25px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*table tbody tr {*/
+/*    border-bottom: 1px solid #dddddd;*/
+/*}*/
+
+/*table tbody tr:last-of-type {*/
+/*    border-bottom: 2px solid #009879;*/
+/*}*/
+
+/*table tbody tr.active-row {*/
+/*    font-weight: bold;*/
+/*    color: #009879;*/
+/*}*/
+
+/*.features {*/
+/*    height: 550px;*/
+/*    overflow: auto;*/
+/*    margin-top: 30px;*/
+/*}*/
+
+/*.features thead th {*/
+/*    position: sticky;*/
+/*    background-color: #009879;*/
+/*    top: 0;*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.col_num {*/
+/*    width: 90px; !* Ширина ячейки *!*/
+/*}*/
+
+
+#search {
+    position: relative;
+    bottom: -20px;
+    width: 200px;
+    height: 45px;
+    text-decoration-color: black;
+    color: black;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+#search_button {
+    position: relative;
+    bottom: -30px;
+    left: -305px;
+    color: black;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    width: 100px;
+}
+
+#search::placeholder {
+    color: black;
+}
+
+#search_button:hover {
+    background-color: #4CAF50; /* black */
+    color: white;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 20px;
+    background-color: #fafafa;
+}
+
+textarea {
+    width: 700px;
+    margin-top: 40px;
+    resize: vertical;
+    padding: 15px;
+    border-radius: 15px;
+    border: 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+    height: 350px;
+}
+
+textarea::-webkit-scrollbar {
+    width: 15px;
+    height: 20px;
+}
+
+/* Track */
+textarea::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+textarea::-webkit-scrollbar-thumb {
+    background: #009879;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    color: black;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 60px 40px;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    background-color: #4CAF50; /* black */
+    color: white;
+}
+
+.custom-file-upload-csv {
+    color: black;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.custom-file-upload-csv:hover {
+    background-color: #4CAF50; /* black */
+    color: white;
+}
+
+.two_but {
+    position: relative;
+    text-align: center;
+    top: 465px;
+}
+
+.accept_upl {
+    color: black;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 60px 40px;
+    cursor: pointer;
+}
+
+.accept_upl:hover {
+    background-color: #4CAF50; /* black */
+    color: white;
+}
+
+.but_csv {
+    position: relative;
+    /*text-align: center;*/
+    left: 650px;
+    top: 500px;
+
+}
+
+#csv_upl {
+    color: black;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 60px 40px;
+    cursor: pointer;
+}
+
+#csv_upl:hover {
+    background-color: #4CAF50; /* black */
+    color: white;
+}
+
+#acs_csv {
+    color: black;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#acs_csv:hover {
+    background-color: #4CAF50; /* black */
+    color: white;
+}
+
+#save_csv {
+    position: relative;
+    color: black;
+    left: 315px;
+    bottom: -115px;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 10px 38px;
+    cursor: pointer;
+}
+
+#save_csv:hover {
+    background-color: #4CAF50; /* black */
+    color: white;
+}
+
+#analyze {
+    position: relative;
+    left: 270px;
+    top: 545px;
+    color: black;
+    background-color: grey;
+    border-radius: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 10px 80px;
+    cursor: pointer;
+}
+
+#analyze:hover {
+    background-color: #4CAF50; /* black */
+    color: white;
+}
+
+body {
+    padding: 300px;
+    font-family: ubuntu;
+}
+
+.help {
+    position: relative;
+    width: 40px;
+    top: -100px;
+    right: -380px;
+}
+
+.help .question {
+    height: 40px;
+    width: 40px;
+    background: #ccc;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.help .popup, .help .popup2 {
+    width: 560px;
+    height: 0px;
+    text-align: left;
+    overflow: hidden;
+    position: relative;
+    background: #eee;
+    opacity: 0;
+    transition: 1s;
+}
+
+.help .popup {
+    left: -260px;
+    top: 10px;
+}
+
+.help .popup2 {
+    height: 520px;
+}
+
+.help .popup2 h4 {
+    font-size: 18px;
+    padding: 10px;
+    margin: 0;
+}
+
+.help:hover .popup {
+    opacity: 1;
+    height: 400px;
+}
+
+.help .tell-me p:first-child {
+    color: #317eac;
+    cursor: pointer;
+}
+
+.tell-me {
+    width: 150px;
+}
+
+.help .tell-me:hover .popup2 {
+    top: -220px;
+    opacity: 1;
+}
+
+.help .popup h3 {
+    margin: 0;
+    padding: 10px 0 0 10px;
+    height: 30px;
+    background: #555;
+    color: #fff;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.help .popup p {
+    font-size: 16px;
+    padding: 10px;
+    margin: 0;
+}
+
+.help .popup .popup2 .sub-levels {
+    padding: 0 0 10px 140px;
+}
+
+.help .popup .popup2 .sub-levels strong {
+    font-size: 20px;
+}
+
+.help .popup .popup2 p:nth-child(5) {
+    padding: 20px 0 0 10px;
+}
+
+.help .popup a {
+    text-decoration: none;
+    color: #317eac;
+}
+
+.help .popup a:visited {
+    color: #317eac;
+}
+
+.help .popup p em {
+    font-size: 12px;
+}

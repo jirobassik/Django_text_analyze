@@ -1,0 +1,127 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}Объекты{% endblock %}
+
+{% block content_main %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="split left">
+            <div class="centered">
+
+                <div class="scroll">
+                    {% csrf_token %}
+                    <label>
+                        <textarea rows="10" cols="10" name="text_area">{{ data_file }}</textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="two_but">
+                <label class="custom-file-upload">
+                    <input type="file" name="document" accept=".txt, .rtf">
+                    Загрузка файла
+                </label>
+                <button class="accept_upl" type="submit" name="upl" title={{ name_upl }}>Выгрузить текст</button>
+            </div>
+        </div>
+        <div class="split right">
+            <div class="centered">
+                {% if update_data|length == 0 and not search %}
+                    <h1>Вставьте текст и нажмите кнопку анализировать</h1>
+                {% elif update_data|length == 0 and error %}
+                    <h1>Неверно раставленны данные</h1>
+                {% else %}
+                    {% if update_data|length == 0 and search %}
+                        <h1>Данные, которые вы ищете, не существуют</h1>
+                    {% else %}
+                        <div class="features">
+                            <label>
+                                <table class="center">
+                                    <thead>
+                                    <tr>
+                                        <th>Лексемма</th>
+                                        <th>Морф разбор</th>
+                                        <th>Роль в предложении</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in update_data %}
+                                        <tr>
+                                            <td>{{ item.lexemm }}</td>
+                                            <td style="overflow:hidden;max-width: 140px;">{{ item.morph }}</td>
+                                            <td style="overflow:hidden;max-width: 50px;">{{ item.role }}</td>
+                                            <td style="overflow:hidden;width: 200px;">
+                                                <ul class="list-inline m-0">
+                                                    <li class="list-inline-item">
+                                                        <a href="{% url 'create_table' %}">
+                                                            <button class="btn btn-primary btn-sm rounded-0"
+                                                                    type="button"
+                                                                    data-placement="top" title="Add"><i
+                                                                    class="bi bi-plus-square-fill"></i>
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="{% url 'object-update' item.id %}">
+                                                            <button class="btn btn-success btn-sm rounded-0"
+                                                                    type="button"
+                                                                    data-placement="top" title="Edit"><i
+                                                                    class="bi bi-pencil-fill"></i>
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="{% url 'object-delete' item.id %}">
+                                                            <button class="btn btn-danger btn-sm rounded-0"
+                                                                    type="button"
+                                                                    data-placement="top" title="Delete"><i
+                                                                    class="bi bi-trash-fill"></i>
+                                                            </button>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </label>
+                        </div>
+                        <button id="save_csv" type="submit" name="save_csv"><i class="bi bi-download"></i></button>
+                        <input id="search" class="form-control mr-sm-2"
+                               name="search_data" type="text"
+                               placeholder="Поиск" aria-label="Search">
+                        <button id="search_button" class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                                name="search"><i class="bi bi-search"></i></button>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <button id="analyze" type="submit" name="analyze">Анализировать</button>
+            <div class="but_csv">
+                <button id="acs_csv" type="submit" name="upl_csv"><i class="bi bi-check-circle"></i></button>
+                <label class="custom-file-upload-csv">
+                    <input type="file" name="csv_upl" accept=".csv"><i class="bi bi-upload"></i>
+                </label>
+            </div>
+            <div class="help">
+
+                <div class="question">?</div>
+
+                <div class="popup">
+                    <h3>Как пользоваться?</h3>
+                    <p>Загрузите файл формата <strong>.txt или .rtf</strong> и выгрузите его.</p>
+                    <p>Нажмите кнопку анализировать для разбора текста.</p>
+                    <p>После анализации текста, появляется таблица, в которой можно редактировать, удалять, добавлять
+                        получившиеся данные.
+                    <p>Получившуюся таблицу можно сохранить в формате <strong>.csv</strong>, для этого нажмите кнопку
+                        загрузки(изображена стрелочка вниз)</p>
+                    <p>Можно загружать таблицы в формате <strong>.csv</strong>, для этого нажмите кнопку
+                        загрузки(изображена стрелочка вверх) и нажмите кнопку с галочкой для выгрузки</p>
+                    <p>В поле поиска можно вводить любые значения</p>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+{% endblock %}

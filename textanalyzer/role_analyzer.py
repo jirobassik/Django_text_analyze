@@ -34,11 +34,7 @@ class RoleAnalyzer:
 
     def display(self, text: str):
         doc = self.nlp(text)
-        #sentence_split = list(doc.sents)
         return displacy.render(doc, style="dep")
-        # displacy.serve(sentence_split, style="dep")
-        # http://localhost:5000/
 
-# a = RoleAnalyzer()
-# print(open_file_txt("test1.txt"))
-# a.display(open_file_txt("test1.txt"))
+
+

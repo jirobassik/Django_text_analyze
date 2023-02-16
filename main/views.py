@@ -13,7 +13,7 @@ from textanalyzer.text_analyzer import TextAnalyzer, open_file_txt
 from .models import OwnerModel
 from .forms import ObjectForm
 from table_work.table_work import clear_tb, add_data_tb
-from csv_use.csv_work import csv_creater, csv_reader
+from file_upl_sav.csv_work import csv_creater, csv_reader
 
 text_analyze = TextAnalyzer()
 
@@ -74,13 +74,13 @@ def upload_csv(request):
     upl_csv = request.FILES.get('csv_upl', False)
     str_upl_csv = str(upl_csv)
     if upl_csv:
-        handle_uploaded_file(upl_csv)
+        handle_uploaded_file(upl_csv, 'main/static/upload/')
         csv_reader(str_upl_csv)
         return OwnerModel.objects.order_by('lexemm')
 
 
 def upload_file(request, upl_file):
-    handle_uploaded_file(upl_file)
+    handle_uploaded_file(upl_file, 'main/static/upload/')
     path_to_file = "main/static/upload/" + upl_file.name
     return open_file_txt(path_to_file)
 
@@ -96,7 +96,7 @@ def analyze(request):
 def download_file():
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     filename = 'data.csv'
-    filepath = BASE_DIR + '/media/' + filename
+    filepath = BASE_DIR + '/main/static/saved/' + filename
     path = open(filepath, 'r', encoding="utf-8", newline='')
     mime_type, _ = mimetypes.guess_type(filepath)
     response = HttpResponse(path, content_type=mime_type)

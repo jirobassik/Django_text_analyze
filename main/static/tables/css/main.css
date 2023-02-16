@@ -403,7 +403,7 @@ input[type="file"] {
     font-size: 15px;
     border: 1px solid #ccc;
     display: inline-block;
-    padding: 10px 15px;
+    padding: 10px 40px;
     cursor: pointer;
 }
 
@@ -558,3 +558,65 @@ body {
 .help .popup p em {
     font-size: 12px;
 }
+
+
+.greeting h1 {
+    text-align: center;
+    color: white;
+}
+
+
+#role_image {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100px;
+}
+
+.bigImage {
+    width: 300px;
+    height: 300px;
+    overflow: scroll;
+}
+
+/*.greeting .button_greet button {*/
+/*    height: 250px;*/
+/*    width: 250px;*/
+/*    margin-left:-100px;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*.greeting .button_greet {*/
+/*    margin-top: 25px;*/
+/*}*/
+
+.greeting .button_greet a {
+    text-decoration: none;
+}
+
+
+.embed_standalone__RHbIL {
+    max-width: 190%;
+
+}
+
+iframe {
+    width: 800px;
+    height: 350px;
+    position: relative;
+    left: -170px;
+    top: 25px;
+    border-top-width: 20px;
+    border-right-width: 20px;
+    border-bottom-width: 20px;
+    border-left-width: 0px;
+}
+
+iframe {
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+    overflow: clip !important;
+}
+

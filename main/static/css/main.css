@@ -566,13 +566,6 @@ body {
     font-size: 12px;
 }
 
-
-.greeting h1 {
-    text-align: center;
-    color: white;
-}
-
-
 #role_image {
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -584,33 +577,6 @@ body {
     width: 300px;
     height: 300px;
     overflow: scroll;
-}
-
-.greeting {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    width: 1100px;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.greeting .button_greet button {
-    height: 250px;
-    width: 250px;
-    position: relative;
-    top: 200px;
-    margin-left:10px;
-    font-size: 20px;
-    overflow: hidden;
-}
-
-.greeting .button_greet {
-    margin-top: -80px;
-}
-
-.greeting .button_greet a {
-    text-decoration: none;
 }
 
 

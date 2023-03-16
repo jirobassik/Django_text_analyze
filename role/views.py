@@ -18,7 +18,7 @@ def role_sent_view(request):
         upl_file = request.FILES.get('document_role', False)
         if upl_file:
             data_file = upload_file(request, upl_file=upl_file)
-            return render(request, 'role_sent/role_sent.html', {'data_file': data_file})
+            return render(request, 'role/role_sent.html', {'data_file': data_file})
     if 'analyze_role' in request.POST:
         start_time = time.time()
         text_area = request.POST['text_area_role']
@@ -26,13 +26,13 @@ def role_sent_view(request):
         print("--- %s seconds ---" % (time.time() - start_time))
         save_html(update_data_area)
         save_svg(update_data_area)
-        return render(request, 'role_sent/role_sent.html',
+        return render(request, 'role/role_sent.html',
                       {'html_upload': "/static/upload/role.html", 'text_info': text_area})
     if 'save_svg' in request.POST:
         drawing = svg2rlg("role/static/upload/role.svg")
         renderPM.drawToFile(drawing, "role/static/saved/role.png", fmt="PNG")
         return download_file()
-    return render(request, 'role_sent/role_sent.html')
+    return render(request, 'role/role_sent.html')
 
 
 def upload_file(request, upl_file):

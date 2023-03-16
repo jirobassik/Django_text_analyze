@@ -1,0 +1,35 @@
+body {
+    background-color: #2c2c2c !important;
+}
+
+.greeting {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 1100px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.greeting .button_greet button {
+    height: 250px;
+    width: 250px;
+    position: relative;
+    top: 200px;
+    margin-left:10px;
+    font-size: 20px;
+    overflow: hidden;
+}
+
+.greeting .button_greet {
+    margin-top: -80px;
+}
+
+.greeting .button_greet a {
+    text-decoration: none;
+}
+
+.greeting h1 {
+    text-align: center;
+    color: white;
+}

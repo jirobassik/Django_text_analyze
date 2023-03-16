@@ -36,8 +36,8 @@ class TextAnalyzer:
 
     def get_text_punctation(self, text_: str) -> list[tuple[str, str, str]]:
         doc = self.nlp(text_)
-        return sorted({(token.text.lower(), self.role_in_sentence(token.text), self.morph_analyzer(token.text))
-                       for token in doc if not re.match(r'[^\w\s]|(\r\n|\r|\n)', token.text)})  # [^\w\s]|\n
+        return {(token.text.lower(), self.role_in_sentence(token.text), self.morph_analyzer(token.text))
+                for token in doc if not re.match(r'[^\w\s]|(\r\n|\r|\n)', token.text)}  # [^\w\s]|\n
 
     def morph_analyzer(self, word: str) -> str:
         return self.morph.parse(word.lower())[0].tag.cyr_repr

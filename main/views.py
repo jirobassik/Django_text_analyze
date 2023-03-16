@@ -14,6 +14,7 @@ from .models import OwnerModel
 from .forms import ObjectForm
 from table_work.table_work import clear_tb, add_data_tb
 from file_upl_sav.csv_work import csv_creater, csv_reader
+from django.contrib.postgres.search import SearchVector
 
 text_analyze = TextAnalyzer()
 
@@ -66,8 +67,12 @@ def view(request):
 def search_post(request):
     search = request.POST['search_data']
     update_data_area = request.POST['text_area']
-    return OwnerModel.objects.filter(
-        Q(lexemm__contains=search) | Q(morph__contains=search) | Q(role__contains=search)), True, update_data_area
+    main_objs = OwnerModel.objects.annotate(
+        search=SearchVector("lexemm", "morph", "role", )).filter(
+        search=search)
+    return main_objs, True, update_data_area
+    # return OwnerModel.objects.filter(
+    #     Q(lexemm__contains=search) | Q(morph__contains=search) | Q(role__contains=search)), True, update_data_area
 
 
 def upload_csv(request):

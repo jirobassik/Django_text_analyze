@@ -13,7 +13,3 @@ class OwnerModel(models.Model):
     @staticmethod
     def get_absolute_url():
         return reverse('main')
-
-class SaveFileModel(models.Model):
-    title = models.CharField(max_length=100)
-    upload = models.FileField(upload_to="media")

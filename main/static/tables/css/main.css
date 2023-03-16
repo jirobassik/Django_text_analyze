@@ -89,9 +89,15 @@ body {
 
 
 .create_table form {
-    margin-left: auto;
-    margin-right: 615px;
+    /*margin-left: auto;*/
+    /*margin-right: 615px;*/
     width: 400px;
+        position: absolute;
+    top: 30%;
+    left: 50%;
+    /*width: 1100px;*/
+    transform: translate(-50%, -50%);
+    text-align: left;
 }
 
 .create_table input[type=text], input[type=text], input[type=text] {
@@ -106,6 +112,7 @@ body {
 .create_table .btn-success {
     background-color: #009879;
     margin-left: 120px;
+    margin-top: 10px;
 }
 
 .create_table #but_event {
@@ -375,7 +382,7 @@ input[type="file"] {
 .but_csv {
     position: relative;
     /*text-align: center;*/
-    left: 650px;
+    left: 599px;
     top: 500px;
 
 }
@@ -614,10 +621,10 @@ body {
 
 iframe {
     width: 800px;
-    height: 350px;
+    height: 510px;
     position: relative;
     left: -170px;
-    top: 25px;
+    top: 94px;
     border-top-width: 20px;
     border-right-width: 20px;
     border-bottom-width: 20px;
@@ -631,6 +638,7 @@ iframe {
     border-image: initial;
     overflow: clip !important;
 }
+
 
 
 

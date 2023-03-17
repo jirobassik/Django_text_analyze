@@ -2,7 +2,7 @@ import os
 import mimetypes
 import time
 
-from django.db.models import Q
+# from django.db.models import Q
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
@@ -10,7 +10,7 @@ from django.views.generic import CreateView, UpdateView
 
 from file_use.file_use import handle_uploaded_file
 from textanalyzer.text_analyzer import TextAnalyzer, open_file_txt
-from .models import OwnerModel
+from .models import OwnerModel, TextModel
 from .forms import ObjectForm
 from table_work.table_work import clear_tb, add_data_tb
 from file_upl_sav.csv_work import csv_creater, csv_reader
@@ -39,7 +39,6 @@ class ObjectUpdate(UpdateView):
 def view(request):
     main_objs = OwnerModel.objects.order_by('lexemm')
     bool_search = False
-    update_data_area = ""
     if 'upl' in request.POST:
         upl_file = request.FILES.get('document', False)
         if upl_file:
@@ -48,6 +47,7 @@ def view(request):
     if 'analyze' in request.POST:
         start_time = time.time()
         update_data_area = analyze(request)
+        save_text(request)
         print("--- %s seconds ---" % (time.time() - start_time))
         return render(request, 'main/main.html', {'update_data': main_objs, 'data_file': update_data_area})
     if 'upl_csv' in request.POST:
@@ -61,7 +61,7 @@ def view(request):
     if 'search' in request.POST:
         main_objs, bool_search, update_data_area = search_post(request)
     return render(request, 'main/main.html',
-                  {'update_data': main_objs, 'search': bool_search, 'data_file': update_data_area})
+                  {'update_data': main_objs, 'search': bool_search, 'data_file': TextModel.objects.get().text})
 
 
 def search_post(request):
@@ -107,3 +107,9 @@ def download_file():
     response = HttpResponse(path, content_type=mime_type)
     response['Content-Disposition'] = "attachment; filename=%s" % filename
     return response
+
+def save_text(request):
+    text_area = request.POST['text_area']
+    text_m = TextModel.objects.get()
+    text_m.text = text_area
+    text_m.save()

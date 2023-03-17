@@ -7,6 +7,7 @@ from file_upl_sav.svg_html import save_html, save_svg
 from file_use.file_use import handle_uploaded_file
 from textanalyzer.role_analyzer import open_file_txt, RoleAnalyzer
 from svglib.svglib import svg2rlg
+
 from reportlab.graphics import renderPM
 import PIL.Image as image
 

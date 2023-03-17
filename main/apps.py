@@ -11,5 +11,7 @@ class MyAppConfig(AppConfig):
     verbose_name = "main"
 
     def ready(self):
-        from .models import OwnerModel
+        from .models import OwnerModel, TextModel
         OwnerModel.objects.all().delete()
+        TextModel.objects.all().delete()
+        TextModel(text="").save()

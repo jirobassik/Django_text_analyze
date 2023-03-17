@@ -1,4 +1,4 @@
-from main.models import OwnerModel
+from main.models import OwnerModel, TextModel
 
 
 def add_data_tb(list_tuple: list[tuple[str, str, str]]):

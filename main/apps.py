@@ -15,3 +15,4 @@ class MyAppConfig(AppConfig):
         from redis_meth.redis_use import set_key
         OwnerModel.objects.all().delete()
         set_key("text", '')
+        set_key("role", '')

@@ -29,11 +29,11 @@ def role_sent_view(request):
         save_html(update_data_area)
         save_svg(update_data_area)
         return render(request, 'role/role_sent.html',
-                      {'html_upload': "/static/upload/role.html", 'data_file': get_key('text')})
+                      {'html_upload': "/static/upload/role.html", 'data_file': get_key('role')})
     if 'save_svg' in request.POST:
         if cloud_converter():
             return download_file()
-    return render(request, 'role/role_sent.html', {'data_file': get_key('text')})
+    return render(request, 'role/role_sent.html', {'data_file': get_key('role')})
 
 
 def upload_file(request, upl_file):
@@ -53,4 +53,4 @@ def download_file():
 
 def save_text(request):
     text_area = request.POST['text_area_role']
-    set_key('text', text_area)
+    set_key('role', text_area)

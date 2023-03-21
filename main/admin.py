@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import OwnerModel, TextModel
+from .models import OwnerModel
 
 admin.site.register(OwnerModel)
-admin.site.register(TextModel)
 # Register your models here.

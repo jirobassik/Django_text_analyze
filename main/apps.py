@@ -11,7 +11,7 @@ class MyAppConfig(AppConfig):
     verbose_name = "main"
 
     def ready(self):
-        from .models import OwnerModel, TextModel
+        from .models import OwnerModel
+        from redis_meth.redis_use import set_key
         OwnerModel.objects.all().delete()
-        TextModel.objects.all().delete()
-        TextModel(text="").save()
+        set_key("text", '')

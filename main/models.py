@@ -13,14 +13,3 @@ class OwnerModel(models.Model):
     @staticmethod
     def get_absolute_url():
         return reverse('main')
-
-
-class TextModel(models.Model):
-    text = models.TextField(null=False, blank=False, default="")
-
-    def __str__(self):
-        return self.text
-
-    @staticmethod
-    def get_absolute_url():
-        return reverse('main')

@@ -2,7 +2,6 @@ import os
 import mimetypes
 import time
 
-# from django.db.models import Q
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
@@ -10,11 +9,12 @@ from django.views.generic import CreateView, UpdateView
 
 from file_use.file_use import handle_uploaded_file
 from textanalyzer.text_analyzer import TextAnalyzer, open_file_txt
-from .models import OwnerModel, TextModel
+from .models import OwnerModel
 from .forms import ObjectForm
 from table_work.table_work import clear_tb, add_data_tb
 from file_upl_sav.csv_work import csv_creater, csv_reader
 from django.contrib.postgres.search import SearchVector
+from redis_meth.redis_use import get_key, set_key
 
 text_analyze = TextAnalyzer()
 
@@ -61,8 +61,7 @@ def view(request):
     if 'search' in request.POST:
         main_objs, bool_search, update_data_area = search_post(request)
     return render(request, 'main/main.html',
-                  {'update_data': main_objs, 'search': bool_search, 'data_file': TextModel.objects.get().text})
-
+                  {'update_data': main_objs, 'search': bool_search, 'data_file': get_key('text')})
 
 def search_post(request):
     search = request.POST['search_data']
@@ -71,9 +70,6 @@ def search_post(request):
         search=SearchVector("lexemm", "morph", "role", )).filter(
         search=search)
     return main_objs, True, update_data_area
-    # return OwnerModel.objects.filter(
-    #     Q(lexemm__contains=search) | Q(morph__contains=search) | Q(role__contains=search)), True, update_data_area
-
 
 def upload_csv(request):
     upl_csv = request.FILES.get('csv_upl', False)
@@ -110,6 +106,4 @@ def download_file():
 
 def save_text(request):
     text_area = request.POST['text_area']
-    text_m = TextModel.objects.get()
-    text_m.text = text_area
-    text_m.save()
+    set_key('text', text_area)

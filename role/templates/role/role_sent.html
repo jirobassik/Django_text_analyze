@@ -31,10 +31,28 @@
                         frameborder="0">
                 </iframe>
             </div>
+            <div class="switcher" style="display:inline-block">
+                <label class="toggle">
+                    <input type="checkbox" id="checkbox" name="checkbox_p" {% if toggle %}checked{% endif %}>
+                    <span class="slider"></span>
+                    <span class="labels" data-on="EN" data-off="RU"></span>
+                </label>
+            </div>
             <button id="analyze" type="submit" name="analyze_role">Анализировать</button>
-            {% if data_file|length != 0 %}
+            {% if data_file|length != 0 and upload %}
                 <button id="acs_csv" type="submit" name="save_svg"><i class="bi bi-download"></i></button>
             {% endif %}
+
+            <script src="https://code.jquery.com/jquery-3.3.1.js"></script> <!-- Import Jquery Here-->
+            <script type="text/javascript">
+                const toggleSwitch = document.querySelector('#checkbox');
+                toggleSwitch.addEventListener('change', function () {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/role/');
+                    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                    xhr.send();
+                });
+            </script>
             <div class="help">
                 <div class="question">?</div>
                 <div class="popup">
@@ -48,7 +66,6 @@
                         загрузки(изображена стрелочка вниз)</p>
                 </div>
             </div>
-
         </div>
     </form>
 {% endblock %}

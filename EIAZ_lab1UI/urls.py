@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('greeting.urls')),
     path('lexem/', include('main.urls')),
     path('role/', include('role.urls')),
+    path('sem_synt/', include('sem_synt.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

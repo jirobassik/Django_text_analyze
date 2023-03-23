@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Объекты{% endblock %}
+{% block style %}{% static 'css/sem_synt.css' %}{% endblock %}
+
+{% block content_main %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="split left">
+            <div class="centered">
+                <div class="scroll">
+                    {% csrf_token %}
+                    <label>
+                        <textarea rows="10" cols="10" name="text_area_role">{{ data_file }}</textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="two_but">
+                <label class="custom-file-upload">
+                    <input type="file" name="document_role" accept=".txt, .rtf">
+                    Загрузка файла
+                </label>
+                <button class="accept_upl" type="submit" name="upl_role">Выгрузить текст</button>
+            </div>
+        </div>
+        <div class="split right">
+            <div class="centered">
+                <iframe class="embed_standalone__RHbIL" title="displaCy visualization of dependencies and entities"
+                        src="{{ html_upload }}" width="100" height="100" allowfullscreen=""
+                        frameborder="0">
+                </iframe>
+            </div>
+            <button id="analyze" type="submit" name="analyze_role">Анализировать</button>
+            {% if data_file|length != 0 %}
+                <button id="acs_csv" type="submit" name="save_svg"><i class="bi bi-download"></i></button>
+            {% endif %}
+            <div class="help">
+                <div class="question">?</div>
+                <div class="popup">
+                    <h3>Как пользоваться?</h3>
+                    <p>Загрузите файл формата <strong>.txt или .rtf</strong> и выгрузите его.</p>
+                    <p>Нажмите кнопку анализировать для разбора текста.</p>
+                    <p>После анализации текста, появляется специальный блок, где можно посмотреть результат
+                        синтаксического анализа
+                    <p>Получившуюся таблицу можно сохранить в формате <strong>.png</strong>, для этого нажмите
+                        кнопку
+                        загрузки(изображена стрелочка вниз)</p>
+                </div>
+            </div>
+
+        </div>
+    </form>
+{% endblock %}

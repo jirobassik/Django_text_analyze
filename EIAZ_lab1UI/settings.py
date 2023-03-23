@@ -31,8 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'role',
     'greeting',
+    'sem_synt.apps.SemSyntAppConfig',
+    'role.apps.RoleAppConfig',
     'main.apps.MyAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',

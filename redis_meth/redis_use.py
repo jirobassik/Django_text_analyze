@@ -13,7 +13,7 @@ from django.core.cache import cache
 #         cache.set('sample', json, timeout=CACHE_TTL)
 #         return JsonResponse(json, safe=False)
 
-def set_key(key, value, timeout=None):
+def set_key(key, value, timeout=3*60):
     return cache.set(key, value, timeout=timeout)
 
 def add_key(key, value, timeout=None):

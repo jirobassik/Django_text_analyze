@@ -3,12 +3,14 @@ import re
 import spacy
 from anytree.exporter import UniqueDotExporter
 from nltk.corpus import wordnet as wn
-from reportlab.graphics import renderPM
 from spacy.util import compile_prefix_regex, compile_suffix_regex
 from spacy.tokenizer import Tokenizer
 from anytree import Node
 import os
 from file_upl_sav.svg_html import create_html
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPM
+
 
 os.environ["PATH"] += os.pathsep + 'D:/Programs/Graphviz/bin/'
 
@@ -51,21 +53,24 @@ class SemSyntAnalyzer:
     @staticmethod
     def __save(root_):
         UniqueDotExporter(root_).to_picture("sem_synt/static/upload/tree.svg")
-        UniqueDotExporter(root_).to_picture("sem_synt/static/upload/tree.png")
+        drawing = svg2rlg("sem_synt/static/upload/tree.svg")
+        renderPM.drawToFile(drawing, "sem_synt/static/upload/tree.png", fmt="PNG")
 
     @staticmethod
     def sem_synt_analyze(word: str) -> dict[str: str]:
-        dict_analyze = {"W": word, 'DEF': wn.synsets(word)[0].definition(), }
-        word = wn.synsets(word)
+        if len(wn.synsets(word)):
+            dict_analyze = {"W": word, 'DEF': wn.synsets(word)[0].definition(), }
+            word = wn.synsets(word)
 
-        synonyms = [lemma.name() for synset in word for lemma in synset.lemmas()]
-        antonyms = [lemma.antonyms()[0].name() for synset in word for lemma in synset.lemmas() if lemma.antonyms()]
-        hyponym = [hyponym.name() for hyponym in word[0].hyponyms()]
-        hypernym = [hypernym.name() for hypernym in word[0].hypernyms()]
+            synonyms = [lemma.name() for synset in word for lemma in synset.lemmas()]
+            antonyms = [lemma.antonyms()[0].name() for synset in word for lemma in synset.lemmas() if lemma.antonyms()]
+            hyponym = [hyponym.name() for hyponym in word[0].hyponyms()]
+            hypernym = [hypernym.name() for hypernym in word[0].hypernyms()]
 
-        dict_synct = {"SYN": synonyms, "ANT": antonyms, "HYPO": hyponym, "HYPE": hypernym}
-        join_values_dict = dict(map(lambda kv: (kv[0], "|".join(kv[1])), dict_synct.items()))
-        for key, value in join_values_dict.items():
-            if len(value):
-                dict_analyze.update([(key, value)])
-        return dict_analyze
+            dict_synct = {"SYN": synonyms, "ANT": antonyms, "HYPO": hyponym, "HYPE": hypernym}
+            join_values_dict = dict(map(lambda kv: (kv[0], "|".join(kv[1])), dict_synct.items()))
+            for key, value in join_values_dict.items():
+                if len(value):
+                    dict_analyze.update([(key, value)])
+            return dict_analyze
+        return {"W": word, }

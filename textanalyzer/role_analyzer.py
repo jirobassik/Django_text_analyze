@@ -30,8 +30,6 @@ def custom_tokenizer(nlp):
 class RoleAnalyzer:
     def __init__(self):
         self.nlp = None
-        # # self.nlp = spacy.load("en_core_web_sm")
-        # self.nlp.tokenizer = custom_tokenizer(self.nlp)
 
     def choose_language(self, choose: int):
         match choose:

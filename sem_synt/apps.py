@@ -12,5 +12,5 @@ class SemSyntAppConfig(AppConfig):
     verbose_name = 'sem_synt'
     if environ.get('RUN_MAIN'):
         def ready(self):
-            from redis_meth.redis_use import set_key
+            from utilities.redis_meth.redis_use import set_key
             set_key('sem_synt', '')

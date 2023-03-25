@@ -1,4 +1,5 @@
 from typing import NoReturn
+from threading import Thread
 import re
 import spacy
 from anytree.exporter import UniqueDotExporter
@@ -7,10 +8,9 @@ from spacy.util import compile_prefix_regex, compile_suffix_regex
 from spacy.tokenizer import Tokenizer
 from anytree import Node
 import os
-from file_upl_sav.svg_html import create_html
+from utilities.file_upl_sav.svg_html import create_html
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
-
 
 os.environ["PATH"] += os.pathsep + 'D:/Programs/Graphviz/bin/'
 
@@ -53,8 +53,12 @@ class SemSyntAnalyzer:
     @staticmethod
     def __save(root_):
         UniqueDotExporter(root_).to_picture("sem_synt/static/upload/tree.svg")
-        drawing = svg2rlg("sem_synt/static/upload/tree.svg")
-        renderPM.drawToFile(drawing, "sem_synt/static/upload/tree.png", fmt="PNG")
+
+        def save_png():
+            drawing = svg2rlg("sem_synt/static/upload/tree.svg")
+            renderPM.drawToFile(drawing, "sem_synt/static/upload/tree.png", fmt="PNG")
+            print("PNG SAVED")
+        Thread(target=save_png).start()
 
     @staticmethod
     def sem_synt_analyze(word: str) -> dict[str: str]:

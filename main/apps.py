@@ -13,6 +13,6 @@ class MyAppConfig(AppConfig):
     if environ.get('RUN_MAIN'):
         def ready(self):
             from .models import OwnerModel
-            from redis_meth.redis_use import set_key
+            from utilities.redis_meth.redis_use import set_key
             OwnerModel.objects.all().delete()
             set_key('text', '')

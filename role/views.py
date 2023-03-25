@@ -2,11 +2,11 @@ import time
 
 from django.http import HttpResponse
 from django.shortcuts import render
-from file_upl_sav.svg_html import save_html, save_svg
-from file_use.file_use import handle_uploaded_file
-from textanalyzer.role_analyzer import open_file_txt, RoleAnalyzer
-from image_use.image_converter import change_background
-from redis_meth.redis_use import set_key, get_key
+from utilities.file_upl_sav.svg_html import save_html, save_svg
+from utilities.file_use.file_use import handle_uploaded_file
+from utilities.textanalyzer.role_analyzer import open_file_txt, RoleAnalyzer
+from utilities.image_use.image_converter import change_background
+from utilities.redis_meth.redis_use import set_key, get_key
 
 import PIL.Image as image
 from test_conv import cloud_converter

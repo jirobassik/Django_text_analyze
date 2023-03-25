@@ -1,6 +1,6 @@
 import csv
 from main.models import OwnerModel
-from table_work.table_work import clear_tb, add_data_tb
+from utilities.table_work.table_work import clear_tb, add_data_tb
 
 
 def csv_creater():

@@ -7,14 +7,14 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView
 
-from file_use.file_use import handle_uploaded_file
-from textanalyzer.text_analyzer import TextAnalyzer, open_file_txt
+from utilities.file_use.file_use import handle_uploaded_file
+from utilities.textanalyzer.text_analyzer import TextAnalyzer, open_file_txt
 from .models import OwnerModel
 from .forms import ObjectForm
-from table_work.table_work import clear_tb, add_data_tb
-from file_upl_sav.csv_work import csv_creater, csv_reader
+from utilities.table_work.table_work import clear_tb, add_data_tb
+from utilities.file_upl_sav.csv_work import csv_creater, csv_reader
 from django.contrib.postgres.search import SearchVector
-from redis_meth.redis_use import get_key, set_key
+from utilities.redis_meth.redis_use import get_key, set_key
 
 text_analyze = TextAnalyzer()
 

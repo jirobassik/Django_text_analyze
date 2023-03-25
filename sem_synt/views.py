@@ -1,10 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from file_use.file_use import handle_uploaded_file
-from textanalyzer.role_analyzer import open_file_txt
-from textanalyzer.sem_synt_analyzer import SemSyntAnalyzer
-from redis_meth.redis_use import get_key, set_key
+from utilities.file_use.file_use import handle_uploaded_file
+from utilities.textanalyzer.role_analyzer import open_file_txt
+from utilities.textanalyzer.sem_synt_analyzer import SemSyntAnalyzer
+from utilities.redis_meth.redis_use import get_key, set_key
 import PIL.Image as image
 
 sem_synt_analyzer = SemSyntAnalyzer()

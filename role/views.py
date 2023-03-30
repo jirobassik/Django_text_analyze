@@ -9,7 +9,7 @@ from utilities.image_use.image_converter import change_background
 from utilities.redis_meth.redis_use import set_key, get_key
 
 import PIL.Image as image
-from test_conv import cloud_converter
+from utilities.api_converter.converter import cloud_converter
 
 role_analyzer = RoleAnalyzer()
 

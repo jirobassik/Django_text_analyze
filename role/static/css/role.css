@@ -444,7 +444,7 @@ body {
 
 .help:hover .popup {
     opacity: 1;
-    height: 280px;
+    height: 650px;
 }
 
 .help .tell-me p:first-child {

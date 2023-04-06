@@ -27,28 +27,36 @@ def custom_tokenizer(nlp) -> NoReturn:
 
 class SemSyntAnalyzer:
     def __init__(self):
+        self.doc = None
         self.nlp = spacy.load("en_core_web_sm")
         self.stopwords = self.nlp.Defaults.stop_words
         self.nlp.tokenizer = custom_tokenizer(self.nlp)
 
-    def get_text_punctation(self, text_: str) -> set[str]:
-        doc = self.nlp(text_)
-        return {token.text.lower() for token in doc
+    def get_text_punctation(self) -> set[str]:
+        return {token.text.lower() for token in self.doc
                 if not re.match(r'[^\w\s]|(\r\n|\r|\n)', token.text)
                 and token.text.lower() not in self.stopwords}
 
     def tree_(self, text: str):
         create_html()
-        set_tokens = self.get_text_punctation(text_=text)
         root_ = Node("S")
-        sent = Node("SENT", parent=root_)
-        for word in set_tokens:
-            ws_node = Node("WS", parent=sent)
-            sem_synt_dict = self.sem_synt_analyze(word)
-            for key, value in sem_synt_dict.items():
-                sem_node = Node(key, parent=ws_node)
-                Node(value, parent=sem_node)
+        self.doc = self.nlp(text)
+        self.get_word_sentence(root_)
         self.__save(root_)
+
+    def get_word_sentence(self, root_):
+        for sentence in [sent for sent in self.doc.sents]:
+            sent = Node("SENT", parent=root_)
+            Node(sentence, parent=sent)
+            for word in self.get_text_punctation():
+                ws_node = Node("WS", parent=sent)
+                self.__add_sem_node(self.sem_synt_analyze(word), ws_node)
+
+    @staticmethod
+    def __add_sem_node(sem_synt_dict: dict, ws_node):
+        for key, value in sem_synt_dict.items():
+            sem_node = Node(key, parent=ws_node)
+            Node(value, parent=sem_node)
 
     @staticmethod
     def __save(root_):
@@ -66,7 +74,7 @@ class SemSyntAnalyzer:
             dict_analyze = {"W": word, 'DEF': wn.synsets(word)[0].definition(), }
             word = wn.synsets(word)
 
-            synonyms = [lemma.name() for synset in word for lemma in synset.lemmas()]
+            synonyms = {lemma.name() for synset in word for lemma in synset.lemmas()}
             antonyms = [lemma.antonyms()[0].name() for synset in word for lemma in synset.lemmas() if lemma.antonyms()]
             hyponym = [hyponym.name() for hyponym in word[0].hyponyms()]
             hypernym = [hypernym.name() for hypernym in word[0].hypernyms()]
